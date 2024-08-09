@@ -26,13 +26,21 @@ public class Conection_JDBC {
         Statement statement;
         ResultSet rst;
         
-        
         try {
             // TODO code application logic here
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conection_JDBC.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        }
+        
+        try {
+            Conexion = DriverManager.getConnection(url, user, password);
+            statement = Conexion.createStatement(); 
+            statement.executeUpdate("INSERT INTO `cliente` (`Id_Usuario`, `Nombre_Cliente`, `Telefono_Cliente`, `Email_Cliente`, `Proyecto_Cotizar`) VALUES ('1234567', 'Alexandra Maria Cano', '1234567891', 'alejandramaria@gmail.com', 'Rosales')");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Conection_JDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
